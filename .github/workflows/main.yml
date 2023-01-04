@@ -1,1 +1,19 @@
+name: Convert Jupyter Notebooks to HTML
 
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Jupyter
+        run: |
+          pip install jupyter
+      - name: Convert Jupyter Notebooks to HTML
+        run: |
+          for file in $(find . -name 'notebooks/*.ipynb'); do
+            jupyter nbconvert --to html "${file} --output-dir=html/"
+          done
