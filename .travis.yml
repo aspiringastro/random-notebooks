@@ -1,0 +1,10 @@
+language: python
+python:
+  - "3.5"
+ 
+# install jupyter
+install:
+  - pip install jupyter
+  - pip install jupyter
+script:
+  - for file in notebooks/*.ipynb; do jupyter nbconvert --to html "${file}" --output "html/${file%.ipynb}.html"; done
